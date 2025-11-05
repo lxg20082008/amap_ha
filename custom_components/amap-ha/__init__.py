@@ -27,10 +27,10 @@ async def async_setup(hass: HomeAssistant, config: dict):
     }
     
     # 注册前端资源
-    hass.http.register_static_path(
-        f"/hacsfiles/{DOMAIN}/amap-tile-layer.js",
-        hass.config.path(f"custom_components/{DOMAIN}/frontend/amap-tile-layer.js"),
-        True
+    # 注册前端模块
+    hass.components.frontend.async_register_module(
+        hass,
+        f"/hacsfiles/{DOMAIN}/frontend/amap-tile-layer.js",
     )
     
     _LOGGER.info(

@@ -25,13 +25,6 @@ async def async_setup(hass: HomeAssistant, config: dict):
     hass.data[DOMAIN] = {
         CONF_PROXY_URL: domain_config.get(CONF_PROXY_URL, DEFAULT_PROXY_URL)
     }
-    
-    # 注册前端资源
-    hass.http.register_static_path(
-        f"/hacsfiles/amap-tile-layer/amap-tile-layer.js",
-        hass.config.path("custom_components/amap_ha/frontend/amap-tile-layer.js"),
-        cache_headers=False
-    )
 
     _LOGGER.info(
         "高德地图瓦片图层集成已加载，代理URL: %s",

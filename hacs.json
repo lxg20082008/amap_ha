@@ -1,7 +1,7 @@
 {
   "name": "高德地图瓦片图层",
   "render_readme": true,
-  "zip_release": true,
+  "zip_release": false,
   "_comment_domains": "配置[domains]的值",
   "domains": ["amap_ha"],
   "country": ["CN"],
@@ -11,8 +11,6 @@
   "issue_tracker": "https://github.com/lxg20082008/amap_ha/issues",
   "codeowners": ["@lxg20082008"],
   "requirements": [],
-  "dependencies": ["frontend"],
-  "after_dependencies": ["frontend"],
   "config_flow": false,
   "homeassistant": "2023.1.0"
 }

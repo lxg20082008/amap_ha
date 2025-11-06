@@ -9,7 +9,8 @@
   "issue_tracker": "https://github.com/lxg20082008/amap_ha/issues",
   "codeowners": ["@lxg20082008"],
   "requirements": [],
-  "dependencies": [],
+  "dependencies": ["frontend"],
   "config_flow": false,
-  "iot_class": "local_polling"
+  "iot_class": "local_polling",
+  "frontend": true
 }

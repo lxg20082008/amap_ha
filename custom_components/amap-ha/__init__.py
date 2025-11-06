@@ -27,11 +27,15 @@ async def async_setup(hass: HomeAssistant, config: dict):
     }
     
     # 注册前端资源
-    # 注册前端模块
-    hass.components.frontend.async_register_module(
-        hass,
-        f"/hacsfiles/{DOMAIN}/frontend/amap-tile-layer.js",
+    # 将前端文件注册到静态路径
+    hass.http.register_static_path(
+        f"/hacsfiles/{DOMAIN}/amap-tile-layer.js",
+        hass.config.path(f"custom_components/{DOMAIN}/frontend/amap-tile-layer.js"),
     )
+    
+    # 注册前端模块到extra_module_url
+    if DOMAIN not in hass.data.get("frontend_extra_module_url", []):
+        hass.data.setdefault("frontend_extra_module_url", []).append(f"/hacsfiles/{DOMAIN}/amap-tile-layer.js")
     
     _LOGGER.info(
         "高德地图瓦片图层集成已加载，代理URL: %s",

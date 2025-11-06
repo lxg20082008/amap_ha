@@ -9,7 +9,7 @@
   "country": ["CN"],
   "iot_class": "cloud_polling",
   "_comment_repo": "配置github用户名和仓库名",
-  "documentation": "https://github.com/lxg20082008/amap-ha",
-  "issue_tracker": "https://github.com/lxg20082008/amap-ha/issues",
+  "documentation": "https://github.com/lxg20082008/amap_ha",
+  "issue_tracker": "https://github.com/lxg20082008/amap_ha/issues",
   "codeowners": ["@lxg20082008"]
 }

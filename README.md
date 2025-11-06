@@ -17,7 +17,7 @@
 ### 通过 HACS（推荐）
 
 1. 在 HACS 中添加自定义仓库：
-   - 仓库：`https://github.com/your-username/amap-ha`
+   - 仓库：`https://github.com/your-username/amap_ha`
    - 类别：集成
 
 2. 搜索 "高德地图瓦片图层" 并安装

@@ -1,16 +1,13 @@
 {
-  "_comments_domains": "设置domains。与其他文件一致",
   "domain": "amap_ha",
-  "_comments_name": "设置name。与其他文件一致",
   "name": "高德地图瓦片图层",
   "version": "1.0.0",
-  "_comments_username": "设置github用户名。与其他文件一致",
   "documentation": "https://github.com/lxg20082008/amap_ha",
   "issue_tracker": "https://github.com/lxg20082008/amap_ha/issues",
   "codeowners": ["@lxg20082008"],
   "requirements": [],
-  "dependencies": ["frontend"],
+  "dependencies": [],
   "config_flow": false,
   "iot_class": "local_polling",
-  "frontend": true
+  "frontend_module_url": "/hacsfiles/amap-tile-layer/amap-tile-layer.js"
 }

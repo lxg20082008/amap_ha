@@ -13,7 +13,7 @@ DEFAULT_PROXY_URL = "http://localhost:8280"
 
 CONFIG_SCHEMA = vol.Schema({
     DOMAIN: vol.Schema({
-        vol.Required(CONF_PROXY_URL): cv.string,
+        vol.Optional(CONF_PROXY_URL, default=DEFAULT_PROXY_URL): cv.string,
     })
 }, extra=vol.ALLOW_EXTRA)
 
@@ -27,16 +27,12 @@ async def async_setup(hass: HomeAssistant, config: dict):
     }
     
     # 注册前端资源
-    # 将前端文件注册到静态路径
     hass.http.register_static_path(
-        f"/hacsfiles/{DOMAIN}/amap-tile-layer.js",
-        hass.config.path(f"custom_components/{DOMAIN}/frontend/amap-tile-layer.js"),
+        f"/hacsfiles/amap-tile-layer/amap-tile-layer.js",
+        hass.config.path("custom_components/amap_ha/frontend/amap-tile-layer.js"),
+        cache_headers=False
     )
-    
-    # 注册前端模块到extra_module_url
-    if DOMAIN not in hass.data.get("frontend_extra_module_url", []):
-        hass.data.setdefault("frontend_extra_module_url", []).append(f"/hacsfiles/{DOMAIN}/amap-tile-layer.js")
-    
+
     _LOGGER.info(
         "高德地图瓦片图层集成已加载，代理URL: %s",
         hass.data[DOMAIN][CONF_PROXY_URL]

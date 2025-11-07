@@ -17,10 +17,10 @@
 ### 通过 HACS（推荐）
 
 1. 在 HACS 中添加自定义仓库：
-   - 仓库：`https://github.com/your-username/amap_ha`
-   - 类别：集成
+   - 仓库：`https://github.com/lxg20082008/ha-map-replacer`
+   - 类别：Lovelace
 
-2. 搜索 "高德地图瓦片图层" 并安装
+2. 搜索 "HA地图替换器" 并安装
 
 3. 重启 Home Assistant
 
@@ -31,53 +31,34 @@
 
 ## 配置
 
-### 步骤 1：配置集成
+在 `config/www/community/ha-map-replacer/config.json` 文件中修改配置：
 
-在 `configuration.yaml` 中添加：
-
-```yaml
-amap_ha:
-  proxy_url: "http://192.168.31.3:8280"  # 你的高德代理服务地址
+```json
+{
+  "proxy_url": "",
+  "max_zoom": 18,
+  "tile_size": 256
+}
 ```
 
 **配置参数**：
-- `proxy_url` (必需): 高德地图代理服务的 URL
+- `proxy_url` (可选): 高德地图代理服务的 URL，如果留空，则使用默认的代理地址。
+- `max_zoom` (可选): 地图最大缩放级别，默认为 `18`。
+- `tile_size` (可选): 瓦片大小，默认为 `256`。
 
-### 步骤 2：重启 Home Assistant
+## 常见问题
 
-重启后打开地图页面，即可看到高德地图。
+### 地图无法加载
 
-## 代理服务要求
+1.  **检查 `config.json` 文件路径**：确保 `config.json` 文件位于 `config/www/community/ha-map-replacer/` 目录下。
+2.  **检查 `proxy_url` 配置**：如果您的代理地址不正确，地图将无法加载。请确保代理服务正常运行，并且地址填写正确。
+3.  **清除浏览器缓存**：修改配置或更新插件后，请务必清除浏览器缓存，然后重启 Home Assistant。
 
-你需要运行一个高德地图代理服务，该服务应该：
+### HACS 安装问题
 
-- 支持 WGS84 到 GCJ02 坐标转换
-- 响应以下 URL 格式的请求：
-  ```
-  http://your-proxy-server/amap/{z}/{x}/{y}.jpg
-  ```
-
-## 工作原理
-
-1. **集成加载**：HA 启动时加载集成，注册前端资源
-2. **配置读取**：前端模块通过 HA API 读取代理 URL 配置
-3. **瓦片替换**：监听 DOM 变化，将 Carto 瓦片实时替换为高德瓦片
-4. **降级处理**：对超出最大缩放级别的瓦片进行降级和缩放处理
-
-## 故障排除
-
-### 地图没有显示高德瓦片
-
-1. 检查代理服务是否正常运行
-2. 确认 `proxy_url` 配置正确
-3. 查看浏览器控制台是否有错误信息
-4. 检查代理服务日志
-
-### 瓦片显示空白
-
-1. 确认代理服务的坐标转换逻辑正确
-2. 检查代理服务能否正常访问高德地图
-3. 验证代理服务的 URL 路径格式
+- **确保仓库类型正确**：在 HACS 中添加自定义仓库时，请选择“Lovelace”或“Plugin”类型。
+- **文件结构**：确保仓库根目录下包含 `hacs.json` 和 `ha-map-replacer.js` 文件。
+- **重启**：安装或更新后，请务必重启 Home Assistant。
 
 ## 支持
 

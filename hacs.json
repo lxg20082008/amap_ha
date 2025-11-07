@@ -5,7 +5,7 @@
   "type": "plugin",
   "content_in_root": false,
   "homeassistant": "2023.1.0",
-  "documentation": "https://github.com/lxg20082008/ha-map-replacer",
-  "issue_tracker": "https://github.com/lxg20082008/ha-map-replacer/issues",
+  "documentation": "https://github.com/lxg20082008/amap_ha",
+  "issue_tracker": "https://github.com/lxg20082008/amap_ha/issues",
   "codeowners": ["@lxg20082008"]
 }

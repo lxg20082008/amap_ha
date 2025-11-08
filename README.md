@@ -1,5 +1,3 @@
-
-
 # 高德地图瓦片图层 Home Assistant 集成
 
 将 Home Assistant 内置的 Carto 地图替换为高德地图瓦片，支持坐标纠偏和瓦片降级处理。
@@ -92,10 +90,10 @@ automation:
 2. 可以通过浏览器地址栏传入参数：
 
 ```Code
-https://homeassistant.local:8123/lovelace/default?amap_proxy=http://your-proxy:8280
+https://homeassistant.local:8123/map/0?amap_proxy=http://your-proxy:8280
 ```
 
-3. 在 `config/www/community/amap_ha/config.json` 文件中修改配置：
+3. 如果你需要自定义配置，请手动在 `config/www/community/ha-map-replacer/` 中创建`config.json`文件，并在 `config/www/community/amap_ha/config.json` 文件中修改配置：
 
 ```json
 {
@@ -160,3 +158,4 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+

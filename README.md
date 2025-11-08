@@ -85,15 +85,21 @@ automation:
 
 ## 配置
 
-1. 配置优先级：URL参数 > 外部配置 > 默认配置
+### 配置优先级：URL参数 > 外部配置 > 默认配置
 
-2. 可以通过浏览器地址栏传入参数：
-
-```Code
-https://homeassistant.local:8123/map/0?amap_proxy=http://your-proxy:8280
+###  配置说明：
+    
+1.  默认配置
+    在js文件里定义了：
+```js
+    const DEFAULT_CONFIG = {
+    proxy_url: 'http://172.22.222.94:8280',
+    max_zoom: 18,
+    tile_size: 256
+   };
 ```
-
-3. 如果你需要自定义配置，请手动在 `config/www/community/ha-map-replacer/` 中创建`config.json`文件，并在 `config/www/community/amap_ha/config.json` 文件中修改配置：
+   `'http://172.22.222.94:8280'`是默认配置
+2. 如果你需要自定义配置，请手动在 `config/www/community/ha-map-replacer/` 中创建`config.json`文件，并在 `config/www/community/amap_ha/config.json` 文件中修改配置：
 
 ```json
 {
@@ -110,7 +116,14 @@ https://homeassistant.local:8123/map/0?amap_proxy=http://your-proxy:8280
 - `max_zoom` (可选): 地图最大缩放级别，默认为 `18`。
 - `tile_size` (可选): 瓦片大小，默认为 `256`。
 
-## 常见问题
+3. URL参数
+   可以通过浏览器地址栏传入参数：
+
+```Code
+https://homeassistant.local:8123/map/0?amap_proxy=http://your-proxy:8280
+```
+
+3. ## 常见问题
 
 ### 地图无法加载
 
@@ -158,4 +171,5 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+
 

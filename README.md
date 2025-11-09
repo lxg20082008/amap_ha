@@ -102,12 +102,11 @@ automation:
 2. 外部配置：如果你需要自定义配置，请手动在 `config/www/community/ha-map-replacer/` 中创建`config.json`文件，并在 `config/www/community/amap_ha/config.json` 文件中修改配置：
 
    ```json
-   {
-   "comments": "高德地图瓦片代理服务URL"
-   "proxy_url": "",
-   "max_zoom": 18,
-   "tile_size": 256
-   }
+{
+  "proxy_url": "http://192.168.31.3:8280",
+  "max_zoom": 18,
+  "tile_size": 256
+}
    ```
 
    **配置参数**：
@@ -171,5 +170,3 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
-
-

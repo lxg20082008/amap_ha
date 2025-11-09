@@ -1,4 +1,9 @@
 const DOMAIN = 'ha_map_replacer';
+const PLUGIN_NAME = 'amap_ha';  // 修正为实际的插件目录名
+const CONFIG_FILE = 'config.json';
+const AMAP_TILE_PATH = '/amap';
+const EMPTY_IMAGE = "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
+
 const DEFAULT_CONFIG = {
     proxy_url: 'http://localhost:8280',
     max_zoom: 18,
@@ -40,7 +45,7 @@ function getConfigFromUrl() {
 async function loadConfig() {
     if (configLoaded) return;
     try {
-        const response = await fetch('/hacsfiles/ha-map-replacer/config.json');
+        const response = await fetch(`/hacsfiles/${PLUGIN_NAME}/${CONFIG_FILE}`);
         if (!response.ok) throw new Error('配置文件加载失败');
         const externalConfig = await response.json();
         CONFIG = validateConfig({
@@ -62,7 +67,7 @@ async function loadConfig() {
 
 // 替换 URL
 function generateAmapUrl(x, y, z) {
-    return `${CONFIG.proxy_url}/amap/${z}/${x}/${y}.jpg`;
+    return `${CONFIG.proxy_url}${AMAP_TILE_PATH}/${z}/${x}/${y}.jpg`;
 }
 
 // 降级算法
@@ -86,10 +91,12 @@ function downgradeTile(x, y, z, maxZoom = CONFIG.max_zoom) {
 function transformCartoImg(img) {
     if (!img || !img.src || !img.tagName) return;
 
+    const CARTO_DOMAIN = 'https://basemaps.cartocdn.com/';
     const src = img.src;
-    if (!src.startsWith('https://basemaps.cartocdn.com/')) return;
+    if (!src.startsWith(CARTO_DOMAIN)) return;
 
-    const match = src.match(/rastertiles\/voyager\/(\d+)\/(\d+)\/(\d+)(?:@2x)?\.png/);
+    const VOYAGER_PATTERN = /rastertiles\/voyager\/(\d+)\/(\d+)\/(\d+)(?:@2x)?\.png/;
+    const match = src.match(VOYAGER_PATTERN);
     if (!match) return;
 
     let [_, zStr, xStr, yStr] = match;
@@ -104,7 +111,7 @@ function transformCartoImg(img) {
     const { srcX, srcY, srcZ, scale, dx, dy } = downgradeTile(x, y, z);
     const downgradeKey = `${srcX},${srcY},${srcZ},${z}`;
     if (existsCoordSet.has(downgradeKey)) {
-        img.src = "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
+        img.src = EMPTY_IMAGE;
         img.style.display = "none";
         return;
     }
@@ -113,8 +120,9 @@ function transformCartoImg(img) {
     existsCoordSet.add(downgradeKey);
     img.src = generateAmapUrl(srcX, srcY, srcZ);
 
+    const TRANSLATE_PATTERN = /translate3d\(([^,]+),\s*([^,]+),\s*([^)]+)\)/;
     if (img.style.transform?.includes('translate3d(')) {
-        const match = img.style.transform.match(/translate3d\(([^,]+),\s*([^,]+),\s*([^)]+)\)/);
+        const match = img.style.transform.match(TRANSLATE_PATTERN);
         if (match) {
             const [_, tx, ty] = match;
             const newTx = parseFloat(tx) + dx;
@@ -137,10 +145,14 @@ function transformCartoImg(img) {
 // DOM 监听逻辑
 function handleAddedNode(node) {
     if (!(node instanceof Element)) return;
-    if (node.tagName === 'DIV' && node.classList.contains('leaflet-layer')) {
+    
+    const LEAFLET_LAYER_CLASS = 'leaflet-layer';
+    const LEAFLET_TILE_CONTAINER_CLASS = 'leaflet-tile-container';
+    
+    if (node.tagName === 'DIV' && node.classList.contains(LEAFLET_LAYER_CLASS)) {
         const _appendChild = Element.prototype.appendChild;
         node.appendChild = function (child) {
-            if (child.tagName === 'DIV' && child.classList.contains('leaflet-tile-container')) {
+            if (child.tagName === 'DIV' && child.classList.contains(LEAFLET_TILE_CONTAINER_CLASS)) {
                 Array.from(child.querySelectorAll('img')).forEach(img => transformCartoImg(img));
                 child.appendChild = function (frags) {
                     if (frags.children) {
@@ -157,8 +169,9 @@ function handleAddedNode(node) {
 }
 
 function handleRemovedNode(node) {
-    if (node.tagName === 'IMG' && node["downgradeKey"]) {
-        existsCoordSet.delete(node["downgradeKey"]);
+    const DOWGRADE_KEY = "downgradeKey";
+    if (node.tagName === 'IMG' && node[DOWGRADE_KEY]) {
+        existsCoordSet.delete(node[DOWGRADE_KEY]);
     }
 }
 
@@ -206,4 +219,3 @@ function initDomObserver() {
 
 // 启动插件
 initDomObserver();
-

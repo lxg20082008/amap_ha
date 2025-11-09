@@ -1,6 +1,6 @@
 const DOMAIN = 'ha_map_replacer';
 const DEFAULT_CONFIG = {
-    proxy_url: 'http://172.22.222.94:8280',
+    proxy_url: 'http://localhost:8280',
     max_zoom: 18,
     tile_size: 256
 };
@@ -206,3 +206,4 @@ function initDomObserver() {
 
 // 启动插件
 initDomObserver();
+

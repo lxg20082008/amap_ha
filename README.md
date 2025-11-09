@@ -16,7 +16,7 @@
 
 1. 在 HACS 中添加自定义仓库：
    - 仓库：`https://github.com/lxg20082008/amap_ha`
-   - 类别：Lovelace
+   - 类别：`Dashbaord`
 
 2. 搜索 "HA地图替换器" 并下载
 

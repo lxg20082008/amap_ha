@@ -123,8 +123,7 @@ automation:
    ```Code
    https://homeassistant.local:8123/map/0?amap_proxy=http://proxy_url:8280
    ```
-
-  **注意：URL末尾没`/`** 
+   **注意：URL末尾没`/`** 
 
 
 ## 常见问题
@@ -175,3 +174,4 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+

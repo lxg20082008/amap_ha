@@ -1,8 +1,5 @@
 {
-  "proxy_url": "http://192.168.31.3:8280",
-  "_descriptiont_proxy_url": "代理服务器地址。",
+  "proxy_url": "http://localhost:58280/",
   "max_zoom": 18,
-  "_descriptiont_max_zoom": "最大缩放级别。",
-  "tile_size": 256,
-  "_descriptiont_tile_size": "瓦片尺寸，单位像素。"
+  "tile_size": 256
 }

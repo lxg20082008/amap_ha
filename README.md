@@ -20,7 +20,8 @@
 
 2. 搜索 "HA地图替换器" 并下载
 
-3. 刷新浏览器
+3. 注册前端资源
+4. 刷新浏览器
 
 #### 自动清理 HACS 生成的 .gz 文件（可选）
 
@@ -81,7 +82,8 @@ automation:
 ### 手动安装
 
 1. 将 `custom_components/amap_ha` 目录复制到你的 Home Assistant 配置目录
-2. 刷新浏览器
+2. 注册前端资源
+3. 刷新浏览器
 
 ## 配置
 
@@ -102,11 +104,11 @@ automation:
 2. 外部配置：如果你需要自定义配置，请手动在 `config/www/community/ha-map-replacer/` 中创建`config.json`文件，并在 `config/www/community/amap_ha/config.json` 文件中修改配置：
 
    ```json
-{
-  "proxy_url": "http://192.168.31.3:8280",
-  "max_zoom": 18,
-  "tile_size": 256
-}
+   {
+     "proxy_url": "http://192.168.31.3:8280",
+     "max_zoom": 18,
+     "tile_size": 256
+   }
    ```
 
    **配置参数**：
@@ -121,6 +123,9 @@ automation:
    ```Code
    https://homeassistant.local:8123/map/0?amap_proxy=http://proxy_url:8280
    ```
+
+  **注意：URL末尾没`/`** 
+
 
 ## 常见问题
 

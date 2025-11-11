@@ -28,8 +28,7 @@
      extra_module_url:
        - /hacsfiles/amap_ha/ha-map-replacer.js
    ```
-4. 启或新加载YAML
-
+4. 重启或重新加载YAML
 #### 自动清理 HACS 生成的 .gz 文件（可选）
 
 注意：仓库结构说明
@@ -90,7 +89,7 @@ automation:
 
 1. 将 `custom_components/amap_ha` 目录复制到你的 Home Assistant 配置目录
 2. 全局加载
-3. 重启或新加载YAML
+3. 重启或重新加载YAML
 
 ## 配置
 
@@ -181,5 +180,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+
 
 

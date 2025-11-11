@@ -20,8 +20,15 @@
 
 2. 搜索 "HA地图替换器" 并下载
 
-3. 注册前端资源
-4. 刷新浏览器
+3. 全局加载
+  `configuration.yaml`文件：
+
+   ```yaml  
+   frontend:
+     extra_module_url:
+       - /hacsfiles/amap_ha/ha-map-replacer.js
+   ```
+4. 启或新加载YAML
 
 #### 自动清理 HACS 生成的 .gz 文件（可选）
 
@@ -82,8 +89,8 @@ automation:
 ### 手动安装
 
 1. 将 `custom_components/amap_ha` 目录复制到你的 Home Assistant 配置目录
-2. 注册前端资源
-3. 刷新浏览器
+2. 全局加载
+3. 重启或新加载YAML
 
 ## 配置
 
@@ -174,4 +181,5 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+
 

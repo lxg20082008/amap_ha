@@ -1,4 +1,4 @@
-# 高德地图瓦片图层 Home Assistant 集成
+# 高德地图瓦片图层替换原生HA地图
 
 将 Home Assistant 内置的 Carto 地图替换为高德地图瓦片，支持坐标纠偏和瓦片降级处理。
 
@@ -180,6 +180,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+
 
 
 

@@ -34,7 +34,7 @@
 注意：仓库结构说明
 
 - 本仓库已将前端插件文件放在仓库根目录：`ha-map-replacer.js` 与 `config.json`。
-- `hacs.json` 已设置为 `"content_in_root": true`，并包含 `"files": ["ha-map-replacer.js", "config.json"]`，因此 HACS 会把这两个文件一并下载到 Home Assistant 的 `www` / `hacsfiles` 目录。
+- HACS 会把这两个文件一并下载到 Home Assistant 的 `community/amap_ha/ `目录。
 
 如果你在 HACS 安装后仍然看到 `*.gz` 文件被生成，这是 Home Assistant/HACS 在服务端为加速传输自动生成的预压缩副本（与仓库结构无关）。下面提供一个可选的自动化脚本，用于定期清理这些 `.gz` 文件。
 
@@ -180,6 +180,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+
 
 
 
